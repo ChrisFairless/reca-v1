@@ -1,0 +1,13 @@
+SECRET_KEY=add_secret_key_here
+DEBUG=True
+
+ALLOWED_HOSTS=0.0.0.0
+
+POSTGRES_HOST=db
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=results
+POSTGRES_PORT=5432
+
+MAPTILER_KEY=add_maptiler_key_here
+

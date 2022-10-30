@@ -1,0 +1,831 @@
+{
+  "data": {
+    "filters": {
+      "extreme_heat": {
+        "name": "Extreme Heat",
+        "value": "extreme_heat",
+        "unit_type": "temperature",
+        "default": true,
+        "location_options": [],
+        "scenario_options": {
+          "year": {
+            "description": "Scenario year",
+            "type": "Select",
+            "default": 2080,
+            "choices": [
+              {
+                "name": "2020",
+                "value": 2020
+              },
+              {
+                "name": "2040",
+                "value": 2040
+              },
+              {
+                "name": "2060",
+                "value": 2060
+              },
+              {
+                "name": "2080",
+                "value": 2080
+              }
+            ]
+          },
+          "climate_scenario": {
+            "description": "Climate change and socioeconomic change scenario",
+            "type": "select",
+            "default": "ssp245",
+            "choices": [
+              {
+                "name": "historical",
+                "value": "historical",
+                "ssp_value": "historical",
+                "rcp_value": "historical",
+                "description": "present day"
+              },
+              {
+                "name": "SSP1 2.6",
+                "value": "ssp126",
+                "ssp_value": "ssp1",
+                "rcp_value": "rcp26",
+                "description": "sustainable future"
+              },
+              {
+                "name": "SSP2 4.5",
+                "value": "ssp245",
+                "ssp_value": "ssp2",
+                "rcp_value": "rcp45",
+                "description": "middle of the road"
+              },
+              {
+                "name": "SSP5 8.5",
+                "value": "ssp585",
+                "ssp_value": "ssp5",
+                "rcp_value": "rcp85",
+                "description": "business as usual"
+              }
+            ]
+          },
+          "impact_type": {
+            "description": "Choice of impact for this hazard",
+            "type": "select",
+            "default": "people_affected",
+            "choices": [
+              {
+                "name": "people affected",
+                "exposure_type": "people",
+                "unit_type": "people",
+                "value": "people_affected"
+              }
+            ]
+          },
+          "discount_rate": {
+            "description": "Discount rate (%) to apply to future impacts",
+            "type": "slider",
+            "default": 0,
+            "choices": {
+              "minimum": 0,
+              "maximum": 5,
+              "step": 0.5
+            }
+          },
+          "return_period": {
+            "description": "Return period (years) to display on the map",
+            "type": "Select",
+            "default": "100",
+            "choices": [
+              {
+                "name": "annual average impact",
+                "value": "aai"
+              },
+              {
+                "name": "10",
+                "value": "10"
+              },
+              {
+                "name": "50",
+                "value": "50"
+              },
+              {
+                "name": "100",
+                "value": "100"
+              },
+              {
+                "name": "150",
+                "value": "150"
+              },
+              {
+                "name": "200",
+                "value": "200"
+              }
+            ]
+          }
+        },
+        "adaptation_measure_options": {
+          "co_benefits": {
+            "description": "Co-benefits of adaptation measure",
+            "type": "multi-select",
+            "default": [],
+            "choices": [
+              {
+                "name": "Water quality and sediment management",
+                "value": "water_quality"
+              },
+              {
+                "name": "Coastal flood risk reduction",
+                "value": "coastal_flood"
+              },
+              {
+                "name": "Pluvial flood risk reduction",
+                "value": "pluvial_flood"
+              },
+              {
+                "name": "Riverine flood risk reduction",
+                "value": "riverine_flood"
+              },
+              {
+                "name": "Resources production",
+                "value": "resources_production"
+              },
+              {
+                "name": "Tourism and recreation",
+                "value": "tourism_recreation"
+              },
+              {
+                "name": "Carbon storage and sequestration",
+                "value": "carbon_storage"
+              },
+              {
+                "name": "Stimulate local economies and job creation",
+                "value": "economic"
+              },
+              {
+                "name": "Human health",
+                "value": "health"
+              },
+              {
+                "name": "Education",
+                "value": "education"
+              },
+              {
+                "name": "Biodiversity",
+                "value": "biodiversity"
+              },
+              {
+                "name": "Cultural",
+                "value": "cultural"
+              },
+              {
+                "name": "Social interaction",
+                "value": "social_interaction"
+              }
+            ]
+          },
+          "cost_type": {
+            "description": "Is the user-provided cost for the whole project, or per unit?",
+            "type": "select",
+            "default": "whole_project",
+            "choices": [
+              {
+                "name": "whole project",
+                "value": "whole_project"
+              },
+              {
+                "name": "per unit area",
+                "value": "per_area"
+              },
+              {
+                "name": "per person",
+                "value": "per_exposure"
+              }
+            ]
+          },
+          "cost": {
+            "description": "Cost of the measure",
+            "type": "number",
+            "default": 0,
+            "unit_type": "currency"
+          },
+          "priority": {
+            "description": "What to prioritise when implementing the measure",
+            "type": "select",
+            "default": "even_coverage",
+            "options": [
+              {
+                "name": "even coverage",
+                "value": "even_coverage",
+                "description": "Apply evenly across the study area"
+              },
+              {
+                "name": "most vulnerable",
+                "value": "most_vulnerable",
+                "description": "Most vulnerable first"
+              },
+              {
+                "name": "cost-benefit",
+                "value": "cost_benefit",
+                "description": "Largest total benefit"
+              }
+            ]
+          },
+          "percentage_coverage": {
+            "description": "What fraction of the study area will this measure be applied to?",
+            "type": "slider",
+            "default": 100,
+            "choices": {
+              "minimum": 0,
+              "maximum": 100,
+              "step": 1
+            }
+          },
+          "percentage_effectiveness": {
+            "description": "Of the population the measure is applied to, what proportion fully benefit from it?",
+            "type": "slider",
+            "default": 100,
+            "choices": {
+              "minimum": 0,
+              "maximum": 100,
+              "step": 1
+            }
+          },
+          "is_coastal": {
+            "description": "Does your distance from the coast affect the effectiveness of the measure?",
+            "type": "toggle",
+            "default": false
+          },
+          "max_distance_from_coast": {
+            "description": "For coastal adaptation measures, how close to the coast must you be to benefit?",
+            "type": "slider",
+            "unit_type": "distance",
+            "default": {
+              "miles": 0,
+              "kilometers": 0
+            },
+            "choices": {
+              "miles": {
+                "minimum": 3,
+                "maximum": 60,
+                "step": 3
+              },
+              "kilometers": {
+                "minimum": 4,
+                "maximum": 60,
+                "step": 4
+              }
+            }
+          },
+          "hazard_cutoff": {
+            "description": "What degree of hazard does this completely prevent impact from?",
+            "type": "slider",
+            "unit_type": "temperature",
+            "default": {
+              "celsius": 25,
+              "fahrenheit": 75
+            },
+            "choices": {
+              "celsius": {
+                "minimum": 25,
+                "maximum": 45,
+                "step": 1
+              },
+              "fahrenheit": {
+                "minimum": 75,
+                "maximum": 110,
+                "step": 1
+              }
+            }
+          },
+          "return_period_cutoff": {
+            "description": "What return period (years) of hazard does this completely prevent impact from?",
+            "type": "slider",
+            "default": 0,
+            "choices": {
+              "minimum": 0,
+              "maximum": 250,
+              "step": 10
+            }
+          },
+          "hazard_change_multiplier": {
+            "description": "How does this measure scale the effective experienced hazard (%)?",
+            "type": "slider",
+            "default": 100,
+            "choices": {
+              "minimum": 0,
+              "maximum": 100,
+              "step": 1
+            }
+          },
+          "hazard_change_constant": {
+            "description": "How much does this measure adjust the effective experienced hazard?",
+            "type": "slider",
+            "unit_type": "temperature",
+            "default": {
+              "celsius": 0,
+              "fahrenheit": 0
+            },
+            "choices": {
+              "celsius": {
+                "minimum": -5,
+                "maximum": 0,
+                "step": 0.5
+              },
+              "fahrenheit": {
+                "minimum": -10,
+                "maximum": 0,
+                "step": 0.5
+              }
+            }
+          },
+          "enabled": {
+            "description": "Include this measure in your analysis?",
+            "type": "toggle",
+            "default": true
+          }
+        }
+      },
+      "tropical_cyclone": {
+        "name": "Tropical cyclone",
+        "value": "tropical_cyclone",
+        "unit_type": "speed",
+        "default": false,
+        "location_options": [
+          "Havana",
+          "Saint Kitts and Nevis",
+          "Port-au-Prince, Haiti",
+          "Jamaica"
+        ],
+        "scenario_options": {
+          "year": {
+            "description": "Scenario year",
+            "type": "Select",
+            "default": 2080,
+            "choices": [
+              {
+                "name": "2020",
+                "value": 2020
+              },
+              {
+                "name": "2040",
+                "value": 2040
+              },
+              {
+                "name": "2060",
+                "value": 2060
+              },
+              {
+                "name": "2080",
+                "value": 2080
+              }
+            ]
+          },
+          "climate_scenario": {
+            "description": "Climate change and socioeconomic change scenario",
+            "type": "select",
+            "default": "ssp245",
+            "choices": [
+              {
+                "name": "historical",
+                "value": "historical",
+                "ssp_value": "historical",
+                "rcp_value": "historical",
+                "description": "No change from the present day"
+              },
+              {
+                "name": "SSP1 2.6",
+                "value": "ssp126",
+                "ssp_value": "ssp1",
+                "rcp_value": "rcp26",
+                "description": "A sustainable future"
+              },
+              {
+                "name": "SSP2 4.5",
+                "value": "ssp245",
+                "ssp_value": "ssp2",
+                "rcp_value": "rcp45",
+                "description": "Middle of the road"
+              },
+              {
+                "name": "SSP5 8.5",
+                "value": "ssp585",
+                "ssp_value": "ssp5",
+                "rcp_value": "rcp85",
+                "description": "Business as usual"
+              }
+            ]
+          },
+          "impact_type": {
+            "description": "Choice of impact for this hazard",
+            "type": "select",
+            "default": "economic_impact",
+            "choices": [
+              {
+                "name": "people affected",
+                "exposure_type": "people",
+                "unit_type": "people",
+                "value": "people_affected"
+              },
+              {
+                "name": "economic impact",
+                "exposure_type": "economic_assets",
+                "unit_type": "currency",
+                "value": "economic_impact"
+              },
+              {
+                "name": "assets affected",
+                "exposure_type": "economic_assets",
+                "unit_type": "currency",
+                "value": "assets_affected"
+              }
+            ]
+          },
+          "discount_rate": {
+            "description": "Discount rate (%) to apply to future impacts",
+            "type": "slider",
+            "default": 0,
+            "choices": {
+              "minimum": 0,
+              "maximum": 5,
+              "step": 0.5
+            }
+          },
+          "return_period": {
+            "description": "Return period (years) to display on the map",
+            "type": "Select",
+            "default": "100",
+            "choices": [
+              {
+                "name": "annual average impact",
+                "value": "aai"
+              },
+              {
+                "name": "10-year return period",
+                "value": "10"
+              },
+              {
+                "name": "50-year return period",
+                "value": "50"
+              },
+              {
+                "name": "100-year return period",
+                "value": "100"
+              },
+              {
+                "name": "150-year return period",
+                "value": "150"
+              },
+              {
+                "name": "200-year return period",
+                "value": "200"
+              }
+            ]
+          }
+        },
+        "adaptation_measure_options": {
+          "co_benefits": {
+            "description": "Co-benefits of adaptation measure",
+            "type": "multi-select",
+            "default": [],
+            "choices": [
+              {
+                "name": "Water quality and sediment management",
+                "value": "water_quality"
+              },
+              {
+                "name": "Coastal flood risk reduction",
+                "value": "coastal_flood"
+              },
+              {
+                "name": "Pluvial flood risk reduction",
+                "value": "pluvial_flood"
+              },
+              {
+                "name": "Riverine flood risk reduction",
+                "value": "riverine_flood"
+              },
+              {
+                "name": "Resources production",
+                "value": "resources_production"
+              },
+              {
+                "name": "Tourism and recreation",
+                "value": "tourism_recreation"
+              },
+              {
+                "name": "Carbon storage and sequestration",
+                "value": "carbon_storage"
+              },
+              {
+                "name": "Stimulate local economies and job creation",
+                "value": "economic"
+              },
+              {
+                "name": "Human health",
+                "value": "health"
+              },
+              {
+                "name": "Education",
+                "value": "education"
+              },
+              {
+                "name": "Biodiversity",
+                "value": "biodiversity"
+              },
+              {
+                "name": "Cultural",
+                "value": "cultural"
+              },
+              {
+                "name": "Social interaction",
+                "value": "social_interaction"
+              }
+            ]
+          },
+          "cost_type": {
+            "description": "Is the user-provided cost for the whole project, or per unit?",
+            "type": "select",
+            "default": "whole_project",
+            "choices": [
+              {
+                "name": "whole project",
+                "value": "whole_project"
+              },
+              {
+                "name": "per unit area",
+                "value": "per_area"
+              },
+              {
+                "name": "per person",
+                "value": "per_exposure"
+              }
+            ]
+          },
+          "cost": {
+            "description": "Cost of the measure",
+            "type": "number",
+            "default": 0,
+            "unit_type": "currency"
+          },
+          "priority": {
+            "description": "What to prioritise when implementing the measure",
+            "type": "select",
+            "default": "even_coverage",
+            "options": [
+              {
+                "name": "even coverage",
+                "value": "even_coverage",
+                "description": "Apply evenly across the study area"
+              },
+              {
+                "name": "most vulnerable",
+                "value": "most_vulnerable",
+                "description": "Most vulnerable first"
+              },
+              {
+                "name": "cost-benefit",
+                "value": "cost_benefit",
+                "description": "Largest total benefit"
+              }
+            ]
+          },
+          "percentage_coverage": {
+            "description": "What fraction of the study area will this measure be applied to?",
+            "type": "slider",
+            "default": 100,
+            "choices": {
+              "minimum": 0,
+              "maximum": 100,
+              "step": 1
+            }
+          },
+          "percentage_effectiveness": {
+            "description": "Of the population the measure is applied to, what proportion fully benefit from it?",
+            "type": "slider",
+            "default": 100,
+            "choices": {
+              "minimum": 0,
+              "maximum": 100,
+              "step": 1
+            }
+          },
+          "is_coastal": {
+            "description": "Does your distance from the coast affect the effectiveness of the measure?",
+            "type": "toggle",
+            "default": false
+          },
+          "max_distance_from_coast": {
+            "description": "For coastal adaptation measures, how close to the coast must you be to benefit?",
+            "type": "slider",
+            "unit_type": "distance",
+            "default": {
+              "miles": 0,
+              "kilometers": 0
+            },
+            "choices": {
+              "miles": {
+                "minimum": 3,
+                "maximum": 60,
+                "step": 3
+              },
+              "kilometers": {
+                "minimum": 4,
+                "maximum": 60,
+                "step": 4
+              }
+            }
+          },
+          "hazard_cutoff": {
+            "description": "What degree of hazard does this completely prevent impact from?",
+            "type": "slider",
+            "unit_type": "speed",
+            "default": {
+              "mph": 39,
+              "kmh": 63,
+              "ms": 18,
+              "kn": 35
+            },
+            "choices": {
+              "mph": {
+                "minimum": 39,
+                "maximum": 157,
+                "step": 1
+              },
+              "kmh": {
+                "minimum": 63,
+                "maximum": 252,
+                "step": 1
+              },
+              "ms": {
+                "minimum": 18,
+                "maximum": 70,
+                "step": 1
+              },
+              "kn": {
+                "minimum": 35,
+                "maximum": 137,
+                "step": 1
+              }
+            }
+          },
+          "return_period_cutoff": {
+            "description": "What return period (years) of hazard does this completely prevent impact from?",
+            "type": "slider",
+            "default": 0,
+            "choices": {
+              "minimum": 0,
+              "maximum": 250,
+              "step": 10
+            }
+          },
+          "intensity_change_multiplier": {
+            "description": "How does this measure scale the effective experienced hazard (%)?",
+            "type": "slider",
+            "default": 100,
+            "choices": {
+              "minimum": 0,
+              "maximum": 100,
+              "step": 1
+            }
+          },
+          "intensity_change_constant": {
+            "description": "How much does this measure adjust the effective experienced hazard?",
+            "type": "slider",
+            "unit_type": "speed",
+            "default": {
+              "mph": 0,
+              "kmh": 0,
+              "ms": 0,
+              "kn": 0
+            },
+            "choices": {
+              "mph": {
+                "minimum": -22,
+                "maximum": 0,
+                "step": 1
+              },
+              "kmh": {
+                "minimum": -35,
+                "maximum": 0,
+                "step": 1
+              },
+              "ms": {
+                "minimum": -10,
+                "maximum": 0,
+                "step": 0.5
+              },
+              "kn": {
+                "minimum": -20,
+                "maximum": 0,
+                "step": 1
+              }
+            }
+          },
+          "enabled": {
+            "description": "Include this measure in your analysis?",
+            "type": "toggle",
+            "default": true
+          }
+        }
+      }
+    },
+    "units": {
+      "currency": {
+        "description": "Currency in analysis",
+        "type": "select",
+        "default": "dollars",
+        "choices": [
+          {
+            "name": "dollars",
+            "value": "dollars"
+          }
+        ]
+      },
+      "people": {
+        "description": "People",
+        "type": "select",
+        "default": "people",
+        "choices": [
+          {
+            "name": "people",
+            "value": "people"
+          }
+        ]
+      },
+      "distance": {
+        "description": "Distance units in analysis",
+        "type": "select",
+        "default": "miles",
+        "choices": [
+          {
+            "name": "miles",
+            "value": "miles"
+          },
+          {
+            "name": "kilometers",
+            "value": "kilometers"
+          }
+        ]
+      },
+      "area": {
+        "description": "Area units in analysis",
+        "type": "select",
+        "default": "square miles",
+        "choices": [
+          {
+            "name": "square miles",
+            "value": "square miles"
+          },
+          {
+            "name": "square kilometers",
+            "value": "square kilometers"
+          },
+          {
+            "name": "acres",
+            "value": "acres"
+          },
+          {
+            "name": "hectares",
+            "value": "hectares"
+          }
+        ]
+      },
+      "speed": {
+        "description": "Speed units in analysis",
+        "type": "select",
+        "default": "mph",
+        "choices": [
+          {
+            "name": "miles per hour",
+            "value": "mph"
+          },
+          {
+            "name": "kilometers per hour",
+            "value": "kmh"
+          },
+          {
+            "name": "meters per second",
+            "value": "ms"
+          },
+          {
+            "name": "knots",
+            "value": "kn"
+          }
+        ]
+      },
+      "temperature": {
+        "description": "Temperature units in analysis",
+        "type": "select",
+        "default": "fahrenheit",
+        "choices": [
+          {
+            "name": "Celsius",
+            "value": "celsius"
+          },
+          {
+            "name": "Fahrenheit",
+            "value": "fahrenheit"
+          }
+        ]
+      }
+    }
+  }
+}
