@@ -77,7 +77,7 @@ class CostBenefitWidgetJobSchema(schemas.JobSchema):
 # ============
 
 class BiodiversityWidgetRequest(schemas.PlaceSchema):
-    units_area: str = None
+    hazard_type: str = None
 
 
 class BiodiversityWidgetData(Schema):
