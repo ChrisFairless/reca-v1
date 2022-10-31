@@ -39,7 +39,9 @@ def json_default(thing):
     # except TypeError:
     #     pass
     try:
-        return thing.__dict__
+        thing_dict = thing.__dict__
+        thing_dict['__class__'] = type(thing).__name__
+        return thing_dict
     except TypeError:
         pass
     if isinstance(thing, datetime.datetime):
