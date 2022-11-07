@@ -90,6 +90,8 @@ def _api_default_measures(request, measure_id: int = None, slug: str = None, haz
     return widget_costbenefit.get_default_measures(measure_id, slug, hazard_type, exposure_type)
 
 
+# ----- COST-BENEFIT ------
+
 @_api.post(
     "/widgets/cost-benefit",
     tags=["widget"],
@@ -98,11 +100,22 @@ def _api_default_measures(request, measure_id: int = None, slug: str = None, haz
 )
 @standardise_schema
 def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWidgetRequest):
-    print("----------ID----------")
-    print(str(data.get_id()))
     result = JobLog.objects.get(job_hash=str(data.get_id()))
     return schemas_widgets.CostBenefitWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/cost-benefit')
 
+
+@_api.get(
+    "/widgets/cost-benefit/{uuid:job_id}",
+    tags=["widget"],
+    response=schemas_widgets.CostBenefitWidgetJobSchema,
+    summary="Get precalculated data for the cost-benefit section of the RECA site"
+)
+def _api_widget_costbenefit_poll(request, job_id):
+    result = JobLog.objects.get(job_hash=str(job_id))
+    return schemas_widgets.CostBenefitWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/cost-benefit')
+
+
+# ----- RISK TIMELINE ------
 
 @_api.post(
     "/widgets/risk-timeline",
@@ -112,11 +125,22 @@ def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWid
 )
 @standardise_schema
 def _api_widget_risk_timeline_submit(request, data: schemas_widgets.TimelineWidgetRequest):
-    print("----------ID----------")
-    print(str(data.get_id()))
     result = JobLog.objects.get(job_hash=str(data.get_id()))
     return schemas_widgets.TimelineWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/risk-timeline')
 
+
+@_api.get(
+    "/widgets/risk-timeline/{uuid:job_id}",
+    tags=["widget"],
+    response=schemas_widgets.TimelineWidgetJobSchema,
+    summary="Get precalculated risk over time data for the RECA site"
+)
+def _api_widget_risk_timeline_poll(request, job_id):
+    result = JobLog.objects.get(job_hash=str(job_id))
+    return schemas_widgets.TimelineWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/risk-timeline')
+
+
+# ----- BIODIVERSITY ------
 
 @_api.post(
     "/widgets/biodiversity",
@@ -130,6 +154,19 @@ def _api_widget_biodiversity_submit(request, data: schemas_widgets.BiodiversityW
     return schemas_widgets.BiodiversityWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/biodiversity')
 
 
+@_api.get(
+    "/widgets/biodiversity/{uuid:job_id}",
+    tags=["widget"],
+    response=schemas_widgets.BiodiversityWidgetJobSchema,
+    summary="Get precalculated data for the biodiversity section of the RECA site"
+)
+def _api_widget_biodiversity_poll(request, job_id):
+    result = JobLog.objects.get(job_hash=str(job_id))
+    return schemas_widgets.BiodiversityWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/biodiversity')
+
+
+# ----- SOCIAL VULNERABILITY ------
+
 @_api.post(
     "/widgets/social-vulnerability",
     tags=["widget"],
@@ -138,9 +175,18 @@ def _api_widget_biodiversity_submit(request, data: schemas_widgets.BiodiversityW
 )
 @standardise_schema
 def _api_widget_social_vulnerability_submit(request, data: schemas_widgets.SocialVulnerabilityWidgetRequest):
-    print("----------ID----------")
-    print(str(data.get_id()))
     result = JobLog.objects.get(job_hash=str(data.get_id()))
+    return schemas_widgets.SocialVulnerabilityWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/social-vulnerability')
+
+
+@_api.get(
+    "/widgets/social-vulnerability/{uuid:job_id}",
+    tags=["widget"],
+    response=schemas_widgets.SocialVulnerabilityWidgetJobSchema,
+    summary="Get precalculated data for the social vulnerability section of the RECA site"
+)
+def _api_widget_social_vulnerability_poll(request, job_id):
+    result = JobLog.objects.get(job_hash=str(job_id))
     return schemas_widgets.SocialVulnerabilityWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/social-vulnerability')
 
 
