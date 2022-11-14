@@ -11,6 +11,7 @@ from calc_api.vizz.util import get_options
 from calc_api.vizz.models import JobLog
 from calc_api.calc_methods import geocode, widget_costbenefit
 from calc_api.job_management.standardise_schema import standardise_schema
+from calc_api.job_management.wrangle_units import wrangle_endpoint_units
 
 conf = ClimadaCalcApiConfig()
 
@@ -80,14 +81,32 @@ def _api_geocode_precalculated_locations(request):
 #######################################
 
 
+# TODO convert measures units nicely
 @_api.get(
     "/widgets/default-measures",
     tags=["widget"],
     response=List[schemas.MeasureSchema],
     summary="Get predefined adaptation measures"
 )
-def _api_default_measures(request, measure_id: int = None, slug: str = None, hazard_type: str = None, exposure_type: str = None):
-    return widget_costbenefit.get_default_measures(measure_id, slug, hazard_type, exposure_type)
+def _api_default_measures(
+        request,
+        measure_id: int = None,
+        slug: str = None,
+        hazard_type: str = None,
+        exposure_type: str = None,
+        units_hazard: str = None,
+        units_currency: str = None,
+        units_distance: str = None
+):
+    return widget_costbenefit.get_default_measures(
+        measure_id,
+        slug,
+        hazard_type,
+        exposure_type,
+        units_hazard,
+        units_currency,
+        units_distance
+    )
 
 
 # ----- COST-BENEFIT ------
@@ -99,6 +118,7 @@ def _api_default_measures(request, measure_id: int = None, slug: str = None, haz
     summary="Create data for the cost-benefit section of the RECA site"
 )
 @standardise_schema
+@wrangle_endpoint_units
 def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWidgetRequest):
     result = JobLog.objects.get(job_hash=str(data.get_id()))
     return schemas_widgets.CostBenefitWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/cost-benefit')
@@ -124,6 +144,7 @@ def _api_widget_costbenefit_poll(request, job_id):
     summary="Create data for the risk over time section of the RECA site"
 )
 @standardise_schema
+@wrangle_endpoint_units
 def _api_widget_risk_timeline_submit(request, data: schemas_widgets.TimelineWidgetRequest):
     result = JobLog.objects.get(job_hash=str(data.get_id()))
     return schemas_widgets.TimelineWidgetJobSchema.from_joblog(result, 'rest/vizz/widgets/risk-timeline')

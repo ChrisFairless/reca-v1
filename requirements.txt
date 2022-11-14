@@ -13,3 +13,5 @@ pyyaml
 pycountry
 shapely
 requests
+pint
+forex_python

@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: bash -c "python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+    env_file: .env
+    volumes:
+      - .:/climada_calc_api/
+      - ./static/climada/data:/climada/data
+      - ./static/sample_data:/climada_calc_api/static/sample_data
+    networks:
+      - calc_network
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file: .env
+    volumes:
+      - ./../climada_calc_api/db-data/:/var/lib/postgresql/data/
+    networks:
+      - calc_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  calc_network:

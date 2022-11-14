@@ -3,6 +3,8 @@ FROM python:3.10
 ENV PYTHONUNBUFFERED 1
 ENV DOCKER_CONTAINER 1
 
+RUN apt-get update
+
 WORKDIR /
 COPY requirements.txt /requirements.txt
 RUN pip install --no-cache -r /requirements.txt

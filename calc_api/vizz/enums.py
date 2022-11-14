@@ -5,6 +5,7 @@ import numpy as np
 from calc_api.vizz.util import get_options
 
 
+# TODO generate all these from the options
 class HazardTypeEnum(str, Enum):
     tropical_cyclone = 'tropical_cyclone'
     extreme_heat = 'extreme_heat'
@@ -54,6 +55,7 @@ def assert_in_enum(value, enum_class):
     assert value in [e.value for e in enum_class]
 
 
+# TODO is this the right place to store this data?
 SCENARIO_LOOKUPS = {
     'historical': {'scenario_name': 'historical', 'scenario_growth': 'historical', 'scenario_climate': 'historical'},
     'ssp126': {'scenario_name': 'rcp126', 'scenario_growth': 'ssp1', 'scenario_climate': 'rcp26'},
@@ -61,13 +63,16 @@ SCENARIO_LOOKUPS = {
     'ssp585': {'scenario_name': 'rcp585', 'scenario_growth': 'ssp5', 'scenario_climate': 'rcp85'}
 }
 
-
 IMPACT_TO_EXPOSURE = {
     'people_affected': 'people',
     'economic_impact': 'economic_assets',
     'assets_affected': 'economic_assets'
 }
 
+EXPOSURE_TO_UNIT_TYPE = {
+    'people': 'people',
+    'economic_assets': 'currency'
+}
 
 HAZARD_TO_ABBREVIATION = {
     'tropical_cyclone': 'TC',
@@ -137,8 +142,8 @@ def get_rp_options(hazard_type, get_value=None, parameters=None):
     return get_option_choices(['data', 'filters', hazard_type, 'scenario_options', 'return_period'], get_value, parameters)
 
 
-def get_currency_options():
-    return get_option_choices(['data', 'units', 'currency'], get_value='value')
+def get_unit_options(unit_type):
+    return get_option_choices(['data', 'units', unit_type], get_value='value')
 
 
 def get_exposure_types(hazard_type=None):
