@@ -42,9 +42,9 @@ def standardise_location(location_name=None, location_code=None, location_scale=
     elif location_scale:
         LOGGER.warning("For now geocoding can't handle location scales other than country: ignoring!")
 
-    if not location_code and re.search('[\d]{3}', location_name):
-        LOGGER.warning(f'Looks like location code was provided as location name. Using it as a code: {location_name}')
-        location_code = location_name
+    # if not location_code and re.search('[\d]{3}', location_name):
+    #     LOGGER.warning(f'Looks like location code was provided as location name. Using it as a code: {location_name}')
+    #     location_code = location_name
 
     if location_code:
         return location_from_code(location_code)
@@ -214,9 +214,10 @@ def query_place(s):
 
 
 def get_one_place(s, exact=True):
-    db_location = Location.objects.filter(name=s)
-    if len(db_location) == 1:
-        return GeocodePlaceList(data=[GeocodePlace(**db_location[0].__dict__)])
+    # TODO fix the location model so this works!!
+    # db_location = Location.objects.filter(name=s)
+    # if len(db_location) == 1:
+    #     return GeocodePlaceList(data=[GeocodePlace(**db_location[0].__dict__)])
     response = query_place(s)
     if len(response) == 0:
         raise ValueError(f'Could not identify a place corresponding to {s}')
@@ -246,9 +247,10 @@ def get_place_hierarchy(s, exact=True):
 
 # TODO there's no real reason to have this separate from query_place is there?
 def geocode_autocomplete(s):
-    db_location = Location.objects.filter(name=s)
-    if len(db_location) == 1:
-        return GeocodePlaceList(data=[GeocodePlace.from_location_model(db_location[0])])
+    # TODO fix the location model so this works!!
+    # db_location = Location.objects.filter(name=s)
+    # if len(db_location) == 1:
+    #     return GeocodePlaceList(data=[GeocodePlace.from_location_model(db_location[0])])
     response = query_place(s)
     if not response:
         return GeocodePlaceList(data=[])
