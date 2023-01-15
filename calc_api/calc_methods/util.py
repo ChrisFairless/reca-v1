@@ -47,15 +47,25 @@ def convert_to_polygon(location_poly):
     return location_poly
 
 
-def bbox_to_wkt(bbox):
 def bbox_to_poly(bbox):
     if len(bbox) != 4:
         raise ValueError('Expected bbox to have four points')
     # TODO use climada utils to standardise around 180 degrees longitude
     lat_list = [bbox[i] for i in [1, 3, 3, 1]]
     lon_list = [bbox[i] for i in [0, 0, 2, 2]]
-    polygon = Polygon([[lon, lat] for lat, lon in zip(lat_list, lon_list)])
-    return polygon.wkt
+    return Polygon([[lon, lat] for lat, lon in zip(lat_list, lon_list)])
+
+
+def poly_to_coords(poly):
+    return [list(coord) for coord in poly.exterior.coords]
+
+
+def bbox_to_coords(bbox):
+    return poly_to_coords(bbox_to_poly(bbox))
+
+
+def bbox_to_wkt(bbox):
+    return bbox_to_poly(bbox).wkt
 
 
 # STOLEN from climada.util.coordinates so I don't have to import CLIMADA for this
@@ -123,16 +133,4 @@ def country_to_iso(countries, representation="alpha3", fillvalue=None):
             iso = int(iso)
         iso_list.append(iso)
     return iso_list[0] if return_single else iso_list
-    return Polygon([[lon, lat] for lat, lon in zip(lat_list, lon_list)])
 
-
-def poly_to_coords(poly):
-    return [list(coord) for coord in poly.exterior.coords]
-
-
-def bbox_to_coords(bbox):
-    return poly_to_coords(bbox_to_poly(bbox))
-
-
-def bbox_to_wkt(bbox):
-    return bbox_to_poly(bbox).wkt
