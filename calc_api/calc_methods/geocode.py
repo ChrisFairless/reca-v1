@@ -231,10 +231,10 @@ def query_place(s):
 def get_one_place(s, exact=True):
     db_location = Location.objects.filter(name=s)
     if len(db_location) == 1:
-        return GeocodePlaceList(data=[GeocodePlace(**db_location[0].__dict__)])
+        return GeocodePlaceList(data=[GeocodePlace.from_location_model(db_location[0])])
     db_location = Location.objects.filter(id=s)
     if len(db_location) == 1:
-        return GeocodePlaceList(data=[GeocodePlace(**db_location[0].__dict__)])
+        return GeocodePlaceList(data=[GeocodePlace.from_location_model(db_location[0])])
     response = query_place(s)
     if len(response) == 0:
         raise ValueError(f'Could not identify a place corresponding to {s}')
@@ -283,10 +283,10 @@ def geocode_autocomplete(s):
     # TODO fix the location model so this works!!
     db_location = Location.objects.filter(name=s)
     if len(db_location) == 1:
-        return GeocodePlaceList(data=[GeocodePlace(**db_location[0].__dict__)])
+        return GeocodePlaceList(data=[GeocodePlace.from_location_model(db_location[0])])
     db_location = Location.objects.filter(id=s)
     if len(db_location) == 1:
-        return GeocodePlaceList(data=[GeocodePlace(**db_location[0].__dict__)])
+        return GeocodePlaceList(data=[GeocodePlace.from_location_model(db_location[0])])
 
     response = query_place(s)
     if not response:
