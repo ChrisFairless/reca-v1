@@ -5,7 +5,7 @@
         "name": "Extreme Heat",
         "value": "extreme_heat",
         "unit_type": "temperature",
-        "default": false,
+        "default": true,
         "location_options": [],
         "scenario_options": {
           "year": {
@@ -347,7 +347,7 @@
         "name": "Tropical cyclone",
         "value": "tropical_cyclone",
         "unit_type": "speed",
-        "default": true,
+        "default": false,
         "location_options": [
           "Havana",
           "Saint Kitts and Nevis",
