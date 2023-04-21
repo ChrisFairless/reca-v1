@@ -160,7 +160,7 @@ def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWid
                                 {
                                     "key": "measure_benefit",
                                     "value": 224558.79562570148,
-                                    "units": "people-days"
+                                    "units": "person-days"
                                 }
                             ]
                         },
@@ -175,7 +175,7 @@ def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWid
                                 {
                                     "key": "measure_future_benefit",
                                     "value": 509746.905335617197,
-                                    "units": "people-days"
+                                    "units": "person-days"
                                 }
                             ]
                         },
@@ -195,7 +195,7 @@ def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWid
                                 {
                                     "key": "saved_per_unit_currency",
                                     "value": 724430.820576791204,
-                                    "units": "people-days"
+                                    "units": "person-days"
                                 }
                             ]
                         },
@@ -359,7 +359,7 @@ def _api_widget_risk_timeline_submit(request, data: schemas_widgets.TimelineWidg
                         "template": "Heatwaves are one of the deadliest natural disasters globally. Heat stress causes illness and death and slows economic activity.",
                         "values": []
                     },
-                    {                  {
+                    {
                         "template": "In this analysis, we define a heatwave as a temperature which is above the 99th percentile of the recent historical temperature record. That means that in the 20th century people would experience about three days of heatwaves in a year. We measure the impacts of heatwaves in 'person-days'. This is the number of days of extreme heat experienced by all people in the population we're looking at. So one person would historically expect three person-days of heatwaves in a year. And a thousand people would experience 3,000 person-days of heat. But if the climate warms and there are eight heatwave days in a future year, then the population of a thousand would experience 8,000 person-days of heat that year. And if the population also grows to two thousand, then eight heatwave days would create 16,000 person-days of heat.",
                         "values": []
                     },
@@ -388,9 +388,8 @@ def _api_widget_risk_timeline_submit(request, data: schemas_widgets.TimelineWidg
                             },
                             {
                                 "key": "future_value",
-                                "value": 8503197.890041346
-,
-                                "units": "people-days"
+                                "value": 8503197.890041346,
+                                "units": "person-days"
                             }
                         ]
                     },
