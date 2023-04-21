@@ -159,7 +159,7 @@ def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWid
                             "values": [
                                 {
                                     "key": "measure_benefit",
-                                    "value": 224558.79562570148,
+                                    "value": 224558,
                                     "units": "person-days"
                                 }
                             ]
@@ -169,12 +169,12 @@ def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWid
                             "values": [
                                 {
                                     "key": "future_measure_percentage_change",
-                                    "value": 127.99360097648717,
+                                    "value": 128.0,
                                     "units": "%"
                                 },
                                 {
                                     "key": "measure_future_benefit",
-                                    "value": 509746.905335617197,
+                                    "value": 509746,
                                     "units": "person-days"
                                 }
                             ]
@@ -194,7 +194,7 @@ def _api_widget_costbenefit_submit(request, data: schemas_widgets.CostBenefitWid
                                 },
                                 {
                                     "key": "saved_per_unit_currency",
-                                    "value": 724430.820576791204,
+                                    "value": 724430,
                                     "units": "person-days"
                                 }
                             ]
@@ -373,7 +373,7 @@ def _api_widget_risk_timeline_submit(request, data: schemas_widgets.TimelineWidg
                             },
                             {
                                 "key": "affected_present",
-                                "value": 3374342.477,
+                                "value": 3374342,
                                 "units": "person-days"
                             }
                         ]
@@ -383,12 +383,12 @@ def _api_widget_risk_timeline_submit(request, data: schemas_widgets.TimelineWidg
                         "values": [
                             {
                                 "key": "future_percent",
-                                "value": 151.99573398432482,
+                                "value": 152.0,
                                 "units": "%"
                             },
                             {
                                 "key": "future_value",
-                                "value": 8503197.890041346,
+                                "value": 8503197,
                                 "units": "person-days"
                             }
                         ]
@@ -398,7 +398,7 @@ def _api_widget_risk_timeline_submit(request, data: schemas_widgets.TimelineWidg
                         "values": [
                             {
                                 "key": "frequency_change",
-                                "value": 92.99306772452783,
+                                "value": 92.9,
                                 "units": "%"
                             }
                         ]
@@ -408,12 +408,12 @@ def _api_widget_risk_timeline_submit(request, data: schemas_widgets.TimelineWidg
                         "values": [
                             {
                                 "key": "new_10yr_return",
-                                "value": 2.5421739231899583,
+                                "value": 2.54,
                                 "units": "years"
                             },
                             {
                                 "key": "new_100yr_return",
-                                "value": 16.8857545331257572,
+                                "value": 16.89,
                                 "units": "years"
                             }
                         ]
