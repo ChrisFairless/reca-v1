@@ -29,6 +29,7 @@ defaults:
      area: "square miles"
      currency: "dollars"
      people: "people"
+     person-days: "person-days"
    image_format: "tif"
    api_parameters:
      scenario_name: "historical"

@@ -18,7 +18,7 @@ NATIVE_UNITS_CLIMADA = {
     # "units_return_period": "years",     # Currently this is fixed
 }
 
-UNITS_NOT_TO_CONVERT = ['fraction', '%', 'percent', 'years', 'people']
+UNITS_NOT_TO_CONVERT = ['fraction', '%', 'percent', 'years', 'people', 'person-days']
 
 UNIT_NAME_CORRECTIONS = {
     "celsius": "degC",

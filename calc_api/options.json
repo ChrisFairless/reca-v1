@@ -74,7 +74,7 @@
               {
                 "name": "people affected",
                 "exposure_type": "people",
-                "unit_type": "people",
+                "unit_type": "person-days",
                 "value": "people_affected"
               }
             ]
@@ -751,6 +751,17 @@
           {
             "name": "people",
             "value": "people"
+          }
+        ]
+      },
+      "person-days": {
+        "description": "Person-days",
+        "type": "select",
+        "default": "person-days",
+        "choices": [
+          {
+            "name": "person-days",
+            "value": "person-days"
           }
         ]
       },

@@ -43,7 +43,7 @@ class ClimadaCalcApiConfig:
         self.LOCK_TIMEOUT = int(cdac['lock-timeout'])
         self.DEFAULT_UNITS = {
             var: cdac['defaults']['units'][var]
-            for var in ['temperature', 'distance', 'speed', 'area', 'currency', "people"]
+            for var in ['temperature', 'distance', 'speed', 'area', 'currency', "people", 'person-days']
         }
         self.DEFAULT_IMAGE_FORMAT = cdac['defaults']['image_format']
         self.DEFAULT_SCENARIO_NAME = cdac['defaults']['api_parameters']['scenario_name']
